@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence-aware parity verdicts</title>
+  <desc id="desc">The four possible outcomes distinguish an observed mismatch, missing evidence, incompatible contracts, and a provenance-complete strict pass.</desc>
+  <rect width="1280" height="620" rx="24" fill="#09090b"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="70" y="82" fill="#fbbf24" font-size="17" letter-spacing="4">EVIDENCE, NOT DECORATION</text>
+    <text x="70" y="138" fill="#f5f5f4" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Equal exports ≠ equal executions.</text>
+    <g transform="translate(70 230)">
+      <rect width="252" height="230" rx="16" fill="#27171d" stroke="#fb7185" stroke-width="2"/>
+      <text x="23" y="40" fill="#fda4af" font-size="14" letter-spacing="2">MISMATCH</text>
+      <text x="23" y="95" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700">FAIL</text>
+      <text x="23" y="143" fill="#fecdd3" font-size="15">Recorded values</text>
+      <text x="23" y="172" fill="#fecdd3" font-size="15">or order differ.</text>
+    </g>
+    <g transform="translate(360 230)">
+      <rect width="252" height="230" rx="16" fill="#2b2416" stroke="#fbbf24" stroke-width="2"/>
+      <text x="23" y="40" fill="#fde68a" font-size="14" letter-spacing="2">MISSING EVIDENCE</text>
+      <text x="23" y="95" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">UNVERIFIABLE</text>
+      <text x="23" y="143" fill="#fef3c7" font-size="15">No reliable input</text>
+      <text x="23" y="172" fill="#fef3c7" font-size="15">or clock provenance.</text>
+    </g>
+    <g transform="translate(650 230)">
+      <rect width="252" height="230" rx="16" fill="#1b1c2c" stroke="#60a5fa" stroke-width="2"/>
+      <text x="23" y="40" fill="#93c5fd" font-size="14" letter-spacing="2">CONTRACT CLASH</text>
+      <text x="23" y="95" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">NOT COMPARABLE</text>
+      <text x="23" y="143" fill="#bfdbfe" font-size="15">Identity or declared</text>
+      <text x="23" y="172" fill="#bfdbfe" font-size="15">contract differs.</text>
+    </g>
+    <g transform="translate(940 230)">
+      <rect width="270" height="230" rx="16" fill="#17231b" stroke="#b7ff5a" stroke-width="2"/>
+      <text x="23" y="40" fill="#d9f99d" font-size="14" letter-spacing="2">STRICT PARITY</text>
+      <text x="23" y="95" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700">PASS</text>
+      <text x="23" y="143" fill="#ecfccb" font-size="15">Values match and</text>
+      <text x="23" y="172" fill="#ecfccb" font-size="15">provenance agrees.</text>
+    </g>
+    <path d="M322 345h27M612 345h27M902 345h27" stroke="#56525f" stroke-width="3"/>
+    <text x="70" y="555" fill="#a1a1aa" font-size="16">The comparator certifies only the evidence the trace actually records.</text>
+  </g>
+</svg>
