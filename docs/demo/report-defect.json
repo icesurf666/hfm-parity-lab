@@ -1,0 +1,102 @@
+{
+  "state": "FAIL",
+  "mode": "strict",
+  "baseline_run_id": "backtest_features",
+  "candidate_run_id": "live_features",
+  "findings": [
+    {
+      "classification": "FEATURE_VALUE_MISMATCH",
+      "message": "feature values differ",
+      "event_id": "evt-001",
+      "stage": "features",
+      "field": "run_frac",
+      "baseline": 0.6,
+      "candidate": 0.4,
+      "severity": "error",
+      "evidence": {
+        "baseline_type": "float",
+        "candidate_type": "float",
+        "baseline_present": true,
+        "candidate_present": true,
+        "absolute_tolerance": 0.0,
+        "relative_tolerance": 0.0,
+        "delta": -0.19999999999999996
+      }
+    },
+    {
+      "classification": "DECISION_MISMATCH",
+      "message": "decision differs",
+      "event_id": "evt-001",
+      "stage": "decision",
+      "field": "decision",
+      "baseline": "BUY",
+      "candidate": "HOLD",
+      "severity": "error",
+      "evidence": {
+        "baseline_type": "string",
+        "candidate_type": "string",
+        "baseline_present": true,
+        "candidate_present": true
+      }
+    },
+    {
+      "classification": "FEATURE_VALUE_MISMATCH",
+      "message": "feature values differ",
+      "event_id": "evt-002",
+      "stage": "features",
+      "field": "run_frac",
+      "baseline": 0.5,
+      "candidate": 0.3333333333333333,
+      "severity": "error",
+      "evidence": {
+        "baseline_type": "float",
+        "candidate_type": "float",
+        "baseline_present": true,
+        "candidate_present": true,
+        "absolute_tolerance": 0.0,
+        "relative_tolerance": 0.0,
+        "delta": -0.16666666666666669
+      }
+    },
+    {
+      "classification": "FEATURE_VALUE_MISMATCH",
+      "message": "feature values differ",
+      "event_id": "evt-003",
+      "stage": "features",
+      "field": "run_frac",
+      "baseline": 0.75,
+      "candidate": 0.9090909090909091,
+      "severity": "error",
+      "evidence": {
+        "baseline_type": "float",
+        "candidate_type": "float",
+        "baseline_present": true,
+        "candidate_present": true,
+        "absolute_tolerance": 0.0,
+        "relative_tolerance": 0.0,
+        "delta": 0.15909090909090906
+      }
+    }
+  ],
+  "aligned_events": 6,
+  "deterministic_parity_verified": false,
+  "first_divergence": {
+    "classification": "FEATURE_VALUE_MISMATCH",
+    "message": "feature values differ",
+    "event_id": "evt-001",
+    "stage": "features",
+    "field": "run_frac",
+    "baseline": 0.6,
+    "candidate": 0.4,
+    "severity": "error",
+    "evidence": {
+      "baseline_type": "float",
+      "candidate_type": "float",
+      "baseline_present": true,
+      "candidate_present": true,
+      "absolute_tolerance": 0.0,
+      "relative_tolerance": 0.0,
+      "delta": -0.19999999999999996
+    }
+  }
+}

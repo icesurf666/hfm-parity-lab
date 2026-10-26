@@ -1,0 +1,43 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  background-image: radial-gradient(circle at 8% -4%, rgb(14 165 233 / 0.12), transparent 28rem),
+    radial-gradient(circle at 96% 10%, rgb(99 102 241 / 0.1), transparent 24rem);
+}
+:focus-visible { @apply outline-2 outline-offset-2 outline-sky-500; }
+::selection { @apply bg-sky-200 text-slate-950; }
+
+.parity-shell { min-height: 100vh; transition: background-color 180ms ease; }
+.parity-shell.is-dragging { @apply bg-sky-50/80 dark:bg-sky-950/40; }
+.parity-header { @apply sticky top-0 z-10 border-b border-slate-200/80 bg-white/75 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/75; }
+.brand-mark { @apply grid size-8 place-items-center rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 text-white shadow-lg shadow-sky-500/20; }
+.brand-name { @apply text-sm font-semibold tracking-tight; }
+.brand-kicker { @apply mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400; }
+.source-line { @apply rounded-xl border border-slate-200/80 bg-white/60 px-3 py-2 text-slate-500 shadow-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-400; }
+.workspace-label { @apply mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400; }
+.workspace-label span + span { @apply before:mr-2 before:content-["•"]; }
+.hero-card { @apply border border-slate-200/80 bg-white/85 shadow-xl shadow-slate-950/[0.04] dark:border-slate-800 dark:bg-slate-900/80; }
+.next-step { @apply grid gap-1 border-l-2 border-sky-400 pl-3 leading-5 text-slate-600 dark:text-slate-300; }
+.next-step span { @apply text-[11px] uppercase tracking-[0.1em] text-sky-700 dark:text-sky-400; }
+.run-pair { @apply hidden rounded-2xl border border-slate-200 bg-slate-50/80 p-4 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-400 lg:grid; }
+.run-pair b { @apply mt-1 truncate font-mono font-medium text-slate-800 dark:text-slate-200; }
+.run-pair i { @apply my-2 not-italic text-center text-sky-500; }
+.metric-card { @apply border border-slate-200/70 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/45; }
+.how-to { @apply border border-slate-200/80 bg-white/65 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/50; }
+.eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-600 dark:text-sky-400; }
+.step-number { @apply grid size-7 place-items-center rounded-full bg-sky-100 text-xs font-bold text-sky-700 dark:bg-sky-950 dark:text-sky-300; }
+.first-finding { @apply border border-rose-200/80 bg-gradient-to-br from-white to-rose-50/60 shadow-lg shadow-rose-950/[0.03] dark:border-rose-900/70 dark:from-slate-900 dark:to-rose-950/15; }
+.classification-pill { @apply rounded-full bg-slate-900 px-2.5 py-1 font-mono text-[10px] font-medium tracking-wide text-white dark:bg-slate-100 dark:text-slate-950; }
+.finding-filter { @apply rounded-2xl border border-slate-200/80 bg-slate-100/70 p-2 dark:border-slate-800 dark:bg-slate-900/50; }
+.finding-card { @apply border border-slate-200/80 bg-white/80 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/70 dark:hover:border-sky-900; }
+.finding-toolbar { @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between; }
+.search-box { @apply flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm transition focus-within:border-sky-400 focus-within:ring-4 focus-within:ring-sky-500/10 dark:border-slate-700 dark:bg-slate-900 sm:max-w-sm; }
+.search-box input { @apply min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400; }
+.search-box button { @apply rounded p-0.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200; }
+.empty-state { @apply border border-dashed border-slate-300 bg-white/60 dark:border-slate-700 dark:bg-slate-900/50; }

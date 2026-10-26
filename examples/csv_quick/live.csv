@@ -1,0 +1,4 @@
+event_id,run_fraction,large_share,prediction,signal
+evt-001,0.4,0.12,0.39,SKIP
+evt-002,0.5,0.09,0.43,SKIP
+evt-003,0.25,0.10,0.27,SKIP

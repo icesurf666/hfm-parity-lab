@@ -1,0 +1,10 @@
+{
+  "state": "PASS",
+  "mode": "strict",
+  "baseline_run_id": "backtest_features",
+  "candidate_run_id": "live_features_fixed",
+  "findings": [],
+  "aligned_events": 6,
+  "deterministic_parity_verified": true,
+  "first_divergence": null
+}

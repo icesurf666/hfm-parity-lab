@@ -1,0 +1,12 @@
+{
+  "identity": {
+    "event_id": {"baseline": "event_id", "candidate": "event_id", "type": "string"}
+  },
+  "stage": {"default": "decision"},
+  "features": {
+    "run_frac": {"baseline": "run_frac", "candidate": "run_fraction", "type": "float", "unit": "ratio"},
+    "large_share": {"baseline": "large_share", "candidate": "large_share", "type": "float", "unit": "ratio"}
+  },
+  "model_score": {"baseline": "score", "candidate": "prediction", "type": "float"},
+  "decision": {"baseline": "decision", "candidate": "signal", "type": "string"}
+}
