@@ -28,14 +28,14 @@
     </g>
     <path d="M380 376h118" stroke="#a78bfa" stroke-width="4"/>
     <path d="M482 363l21 13-21 13" fill="#a78bfa"/>
-    <g transform="translate(530 260)">
-      <rect width="330" height="250" rx="18" fill="#171624" stroke="#8b5cf6" stroke-width="2"/>
+    <g transform="translate(530 250)">
+      <rect width="330" height="270" rx="18" fill="#171624" stroke="#8b5cf6" stroke-width="2"/>
       <text x="28" y="44" fill="#c4b5fd" font-size="14" letter-spacing="2">DETERMINISTIC COMPARATOR</text>
-      <text x="28" y="100" fill="#f5f5f4" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Align. Compare. Explain.</text>
-      <path d="M30 135h270" stroke="#393744" stroke-width="2"/>
-      <text x="28" y="174" fill="#e7e5e4" font-size="16">identity + stage</text>
-      <text x="28" y="207" fill="#e7e5e4" font-size="16">features + scores + decisions</text>
-      <text x="28" y="240" fill="#e7e5e4" font-size="16">metadata + causality evidence</text>
+      <text x="28" y="94" fill="#f5f5f4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Align. Compare. Explain.</text>
+      <path d="M30 126h270" stroke="#393744" stroke-width="2"/>
+      <text x="28" y="165" fill="#e7e5e4" font-size="15">identity + stage</text>
+      <text x="28" y="198" fill="#e7e5e4" font-size="15">features, scores, decisions</text>
+      <text x="28" y="231" fill="#e7e5e4" font-size="15">metadata + causality</text>
     </g>
     <path d="M890 386h102" stroke="#60a5fa" stroke-width="4"/>
     <path d="M976 373l21 13-21 13" fill="#60a5fa"/>
