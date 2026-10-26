@@ -1,5 +1,9 @@
 # HFM Parity Lab
 
+<p align="center">
+  <img src="assets/readme-hero.svg" alt="HFM Parity Lab compares baseline and candidate traces to identify the first observable divergence." width="100%">
+</p>
+
 **An open-source Python debugger for investigating differences between backtest, replay and live decision pipelines.**
 
 Record two runs of a pipeline as JSONL, compare them deterministically, and get the
