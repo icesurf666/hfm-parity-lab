@@ -25,7 +25,7 @@ evt-001 · decision                 baseline BUY   candidate HOLD    <- downstre
 Python 3.11+. Not on PyPI yet: install from a source checkout.
 
 ```bash
-git clone <repository-url> hfm-parity-lab && cd hfm-parity-lab
+git clone https://github.com/icesurf666/hfm-parity-lab.git && cd hfm-parity-lab
 python -m venv .venv && source .venv/bin/activate
 ```
 

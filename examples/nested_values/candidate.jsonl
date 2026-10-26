@@ -1,0 +1,2 @@
+{"record_type":"run","run_id":"nested-candidate","schema_version":"1.0","pipeline_version":"example@1","feature_schema_hash":"nested-values@1","config_hash":"config@1","clock_domain":"unix_epoch_ns","model_version":"model@1","venue":"example","symbol":"SYNTH","data_source":"synthetic-fixture"}
+{"record_type":"observation","event":{"id":"evt-001","sequence":1,"source":"fixture","event_ts_ns":1000000000,"input_hash":"input@1"},"stage":"features","features":{"payload":{"value":[true],"unit":"json","available_at_ns":1000000000}},"decision":"HOLD","decision_ts_ns":1000000001}
