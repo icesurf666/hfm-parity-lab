@@ -9,7 +9,14 @@ from hfm_parity.adapters.csv_quick import compare_csv, load_csv_mapping
 from hfm_parity.adapters.jsonl import TraceValidationError, read_jsonl
 from hfm_parity.adapters.reports import write_html, write_json
 from hfm_parity.application.compare import compare_runs
-from hfm_parity.domain.models import CompareConfig, ComparisonMode, ResultState
+from hfm_parity.domain.models import (
+    Classification,
+    CompareConfig,
+    ComparisonMode,
+    ComparisonReport,
+    Finding,
+    ResultState,
+)
 
 EXIT_CODES = {ResultState.PASS: 0, ResultState.FAIL: 1, ResultState.NOT_COMPARABLE: 2, ResultState.UNVERIFIABLE: 2, ResultState.ERROR: 4}
 
@@ -66,8 +73,7 @@ def main(argv: list[str] | None = None) -> int:
                 write_json(report, args.json_output)
             return EXIT_CODES[report.state]
         else:
-            report = compare_runs(read_jsonl(args.baseline), read_jsonl(args.candidate),
-                                  CompareConfig(args.abs_tol, args.rel_tol, ComparisonMode(args.mode)))
+            report = _diff(args)
         write_html(report, args.output)
         if args.json_output:
             write_json(report, args.json_output)
@@ -96,6 +102,33 @@ def _quick_summary(report: object) -> None:
         print(f"First observed difference: {first.event_id} / {first.stage} / {first.field}")
     if not report.deterministic_parity_verified:
         print("Parity verification: not verified; CSV mapping does not establish unrecorded provenance.")
+
+
+def _diff(args: argparse.Namespace) -> ComparisonReport:
+    config = CompareConfig(args.abs_tol, args.rel_tol, ComparisonMode(args.mode))
+    try:
+        baseline = read_jsonl(args.baseline)
+    except TraceValidationError as exc:
+        return _invalid_trace_report("baseline", args.baseline, args.candidate, config, exc)
+    try:
+        candidate = read_jsonl(args.candidate)
+    except TraceValidationError as exc:
+        return _invalid_trace_report("candidate", args.baseline, args.candidate, config, exc)
+    return compare_runs(baseline, candidate, config)
+
+
+def _invalid_trace_report(side: str, baseline: Path, candidate: Path, config: CompareConfig,
+                          error: TraceValidationError) -> ComparisonReport:
+    finding = Finding(
+        Classification.TRACE_INVALID,
+        "trace is invalid or ambiguous; deterministic parity cannot be assessed",
+        field=side,
+        baseline=str(baseline),
+        candidate=str(candidate),
+        evidence={"parse_error": str(error)},
+    )
+    return ComparisonReport(ResultState.NOT_COMPARABLE, config.mode, "unreadable-baseline",
+                            "unreadable-candidate", (finding,), 0)
 
 
 if __name__ == "__main__":

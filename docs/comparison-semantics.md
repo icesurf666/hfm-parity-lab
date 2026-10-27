@@ -42,6 +42,13 @@ A clock-domain mismatch is `NOT_COMPARABLE` in both modes because the engine nev
 
 `ERROR` is reserved for external boundaries; the CLI exits `3`/`4` instead of emitting a report.
 
+## Invalid input during a comparison
+
+`validate` rejects an invalid JSONL trace with exit code `3`. During `diff`, an invalid baseline or
+candidate instead produces a `NOT_COMPARABLE` report with a `TRACE_INVALID` finding and exit code `2`.
+This preserves the parser's reason (for example, a duplicate key at any nesting depth) in an auditable
+comparison artifact; it is never silently normalized to a last-wins object or a `PASS`.
+
 ## Identity, order and `first_divergence`
 
 An observation is identified by the exact pair `event.id + stage`. Time proximity never creates identity.

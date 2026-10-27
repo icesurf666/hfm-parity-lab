@@ -22,6 +22,7 @@ class ComparisonMode(StrEnum):
 
 
 class Classification(StrEnum):
+    TRACE_INVALID = "TRACE_INVALID"
     EVENT_MISMATCH = "EVENT_MISMATCH"
     SCHEMA_MISMATCH = "SCHEMA_MISMATCH"
     FEATURE_MISSING = "FEATURE_MISSING"
