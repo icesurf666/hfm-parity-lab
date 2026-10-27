@@ -11,6 +11,11 @@ def report(left: object, right: object, **tolerance: float):
     return run([obs(features={"payload": feat(left)})], [obs(features={"payload": feat(right)})], **tolerance)
 
 
+class ExplodingEqualityList(list[object]):
+    def __eq__(self, other: object) -> bool:
+        raise AssertionError("recursive comparison must not call container __eq__")
+
+
 @pytest.mark.parametrize(
     ("left", "right", "field"),
     [
@@ -34,6 +39,10 @@ def test_equal_nested_values_and_float_tolerance_remain_valid() -> None:
     exact = {"a": [1, False, None, {"z": "ok"}]}
     assert report(exact, exact).state.value == "PASS"
     assert report({"score": [1.0, 1.25]}, {"score": [1.0, 1.5]}, absolute_tolerance=0.25).state.value == "PASS"
+
+
+def test_recursive_walk_never_calls_host_container_equality() -> None:
+    assert report(ExplodingEqualityList([1]), [1]).state.value == "PASS"
 
 
 def test_large_nested_integers_remain_exact() -> None:

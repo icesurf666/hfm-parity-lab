@@ -36,6 +36,12 @@ def test_tolerance_applies_only_when_both_values_are_floats() -> None:
     assert verdict(1, 1.25, absolute_tolerance=0.25) == "FAIL"
 
 
+def test_relative_tolerance_is_not_treated_as_absolute() -> None:
+    left, right = 100_000.0, 100_005.0
+    assert verdict(left, right, absolute_tolerance=1e-9) == "FAIL"
+    assert verdict(left, right, absolute_tolerance=1e-9, relative_tolerance=1e-4) == "PASS"
+
+
 def test_huge_int_with_tolerance_does_not_crash() -> None:
     assert verdict(10**400, 1.0, absolute_tolerance=0.1) == "FAIL"
     assert verdict(10**400, 10**400, absolute_tolerance=0.1) == "PASS"
