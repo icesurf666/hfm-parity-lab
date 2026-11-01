@@ -40,3 +40,19 @@ def test_diff_reports_nested_duplicate_key_as_not_comparable(tmp_path, monkeypat
     assert report["state"] == "NOT_COMPARABLE"
     assert report["findings"][0]["classification"] == "TRACE_INVALID"
     assert "NOT_COMPARABLE" in capsys.readouterr().out
+
+
+def test_invalid_candidate_still_names_the_baseline_run(tmp_path, monkeypatch, capsys) -> None:  # type: ignore[no-untyped-def]
+    baseline = ROOT / "examples" / "baseline.jsonl"
+    baseline_run_id = json.loads(baseline.read_text(encoding="utf-8").splitlines()[0])["run_id"]
+    invalid = tmp_path / "invalid.jsonl"
+    invalid.write_text('{"record_type":"observation","event":{"id":"a"},"stage":"x"}\n', encoding="utf-8")
+    monkeypatch.chdir(tmp_path)
+    assert main(["diff", "--baseline", str(baseline), "--candidate", str(invalid),
+                 "--output", "report.html", "--json-output", "report.json"]) == 2
+    report = json.loads((tmp_path / "report.json").read_text(encoding="utf-8"))
+    assert report["findings"][0]["classification"] == "TRACE_INVALID"
+    assert report["findings"][0]["field"] == "candidate"
+    assert report["baseline_run_id"] == baseline_run_id
+    assert report["candidate_run_id"] == "unreadable-candidate"
+    assert "NOT_COMPARABLE" in capsys.readouterr().out
