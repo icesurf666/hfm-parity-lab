@@ -16,6 +16,7 @@ from hfm_parity.domain.models import (
     ComparisonReport,
     Finding,
     ResultState,
+    Trace,
 )
 
 EXIT_CODES = {ResultState.PASS: 0, ResultState.FAIL: 1, ResultState.NOT_COMPARABLE: 2, ResultState.UNVERIFIABLE: 2, ResultState.ERROR: 4}
@@ -106,19 +107,28 @@ def _quick_summary(report: object) -> None:
 
 def _diff(args: argparse.Namespace) -> ComparisonReport:
     config = CompareConfig(args.abs_tol, args.rel_tol, ComparisonMode(args.mode))
-    try:
-        baseline = read_jsonl(args.baseline)
-    except TraceValidationError as exc:
-        return _invalid_trace_report("baseline", args.baseline, args.candidate, config, exc)
-    try:
-        candidate = read_jsonl(args.candidate)
-    except TraceValidationError as exc:
-        return _invalid_trace_report("candidate", args.baseline, args.candidate, config, exc)
+    baseline, baseline_error = _read(args.baseline)
+    candidate, candidate_error = _read(args.candidate)
+    if baseline_error is not None:
+        return _invalid_trace_report("baseline", args.baseline, args.candidate, config, baseline_error,
+                                     candidate_trace=candidate)
+    if candidate_error is not None:
+        return _invalid_trace_report("candidate", args.baseline, args.candidate, config, candidate_error,
+                                     baseline_trace=baseline)
     return compare_runs(baseline, candidate, config)
 
 
+def _read(path: Path) -> tuple[Trace | None, TraceValidationError | None]:
+    """Read one side without deciding the outcome: the caller reports which side failed."""
+    try:
+        return read_jsonl(path), None
+    except TraceValidationError as exc:
+        return None, exc
+
+
 def _invalid_trace_report(side: str, baseline: Path, candidate: Path, config: CompareConfig,
-                          error: TraceValidationError) -> ComparisonReport:
+                          error: TraceValidationError, *, baseline_trace: Trace | None = None,
+                          candidate_trace: Trace | None = None) -> ComparisonReport:
     finding = Finding(
         Classification.TRACE_INVALID,
         "trace is invalid or ambiguous; deterministic parity cannot be assessed",
@@ -127,8 +137,10 @@ def _invalid_trace_report(side: str, baseline: Path, candidate: Path, config: Co
         candidate=str(candidate),
         evidence={"parse_error": str(error)},
     )
-    return ComparisonReport(ResultState.NOT_COMPARABLE, config.mode, "unreadable-baseline",
-                            "unreadable-candidate", (finding,), 0)
+    return ComparisonReport(ResultState.NOT_COMPARABLE, config.mode,
+                            "unreadable-baseline" if baseline_trace is None else baseline_trace.meta.run_id,
+                            "unreadable-candidate" if candidate_trace is None else candidate_trace.meta.run_id,
+                            (finding,), 0)
 
 
 if __name__ == "__main__":
